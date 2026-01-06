@@ -1,0 +1,223 @@
+<!-- Finzify - "Estamos trabajando..." coming soon page
+     Save this file as index.html and push to the root of your GitHub Pages repo.
+     Optional: create a text file named CNAME (one line) containing your custom domain (e.g. finzify.com)
+     This single-file page is responsive, includes a Konami-code + click-rapidly easter egg that reveals a secret.
+-->
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Finzify — Estamos trabajando...</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1:#0f172a; /* deep navy */
+      --bg2:#0b2545; /* soft blue */
+      --accent:#f59e0b; /* amber */
+      --muted:rgba(255,255,255,0.7);
+      --glass: rgba(255,255,255,0.05);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
+
+    body{
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(15,23,42,0.6), transparent 10%), linear-gradient(135deg,var(--bg1),var(--bg2));
+      color: white;display:flex;align-items:center;justify-content:center;padding:32px;
+      -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    }
+
+    .card{
+      width:100%;max-width:920px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
+      border-radius:20px;padding:36px;box-shadow:0 8px 30px rgba(2,6,23,0.6);backdrop-filter: blur(6px);
+      display:grid;grid-template-columns:1fr 360px;gap:32px;align-items:center;
+    }
+
+    @media (max-width:880px){
+      .card{grid-template-columns:1fr;max-width:680px;padding:28px}
+    }
+
+    .brand{display:flex;flex-direction:column;gap:18px}
+
+    .logo{display:flex;align-items:center;gap:14px}
+    .logo svg{width:64px;height:64px;flex-shrink:0;cursor:pointer}
+    .title{font-size:28px;font-weight:800;letter-spacing:-0.02em}
+    .subtitle{color:var(--muted);font-weight:400}
+
+    .message{margin-top:8px;color:var(--muted);line-height:1.5}
+
+    .countdown{display:flex;gap:12px;margin-top:18px}
+    .pill{background:var(--glass);padding:10px 14px;border-radius:999px;font-weight:600}
+
+    .right{
+      background:linear-gradient(180deg,rgba(255,255,255,0.01),rgba(255,255,255,0.015));padding:22px;border-radius:14px;align-self:stretch;
+      display:flex;flex-direction:column;gap:12px;justify-content:center
+    }
+    .progress{height:10px;background:rgba(255,255,255,0.04);border-radius:999px;overflow:hidden}
+    .progress > i{display:block;height:10px;background:linear-gradient(90deg,var(--accent),#ffd166);width:56%;transition:width 700ms ease}
+
+    .actions{display:flex;gap:10px;margin-top:12px}
+    .btn{padding:10px 14px;border-radius:10px;border:0;background:transparent;color:var(--muted);font-weight:600;cursor:pointer}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#ffd166);color:#08122a}
+
+    footer{margin-top:22px;color:rgba(255,255,255,0.5);font-size:13px}
+
+    /* Easter egg glass panel */
+    .secret{position:fixed;inset:24px;display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:0;transition:opacity 400ms ease}
+    .secret.show{opacity:1;pointer-events:auto}
+    .secret-card{background:linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02));padding:26px;border-radius:16px;box-shadow:0 12px 60px rgba(2,6,23,0.7);min-width:300px;text-align:center}
+    .secret h3{margin:0 0 8px 0}
+
+    /* simple confetti */
+    .confetti-piece{position:fixed;width:10px;height:16px;opacity:0;transform:translateY(-20px) rotate(0deg);animation:fall 1500ms linear forwards}
+    @keyframes fall{
+      to{transform:translateY(110vh) rotate(520deg);opacity:1}
+    }
+
+    /* small helpers */
+    .muted{color:var(--muted);font-size:14px}
+
+  </style>
+</head>
+<body>
+  <main class="card" role="main">
+    <section class="brand">
+      <div class="logo" id="logo" title="Haz click rápido 7 veces o escribe la Konami!">
+        <!-- stylized monogram (C + G inspiration removed) - Finzify F symbol -->
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1">
+              <stop offset="0" stop-color="#f59e0b" />
+              <stop offset="1" stop-color="#ffd166" />
+            </linearGradient>
+          </defs>
+          <rect width="64" height="64" rx="14" fill="url(#g1)" />
+          <path d="M20 18h20a8 8 0 0 1 0 16H28v6" stroke="#08122a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <div>
+          <div class="title">Finzify</div>
+          <div class="subtitle">Estamos trabajando... (Próximamente)</div>
+        </div>
+      </div>
+
+      <p class="message">Estamos construyendo algo que hará que manejar tus finanzas sea más simple y bonito. Mientras tanto, puedes dejar tu correo para que te avisemos cuando lancemos.</p>
+
+      <div class="countdown" aria-hidden="true">
+        <div class="pill">Notificaciones: <strong class="muted">Próximamente</strong></div>
+        <div class="pill">Beta privada</div>
+      </div>
+
+      <form id="waitlistForm" style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+        <input type="email" id="email" placeholder="tu@correo.com" aria-label="Tu correo" style="flex:1;min-width:180px;padding:10px;border-radius:10px;border:0;background:rgba(255,255,255,0.03);color:white" />
+        <button class="btn primary" type="submit">Avisarme</button>
+        <button class="btn" type="button" id="themeBtn">Modo sorpresa</button>
+      </form>
+
+      <footer>Diseño minimal • Responsive • Easter egg incluido</footer>
+    </section>
+
+    <aside class="right">
+      <div class="muted">Progreso de desarrollo</div>
+      <div class="progress" aria-hidden="true"><i></i></div>
+      <div class="muted">Version: <strong>0.3.1-alpha</strong></div>
+      <div class="muted">Última actualización: <strong>Hoy</strong></div>
+      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn">Ver roadmap</button>
+        <button class="btn">Contacto</button>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Hidden secret overlay -->
+  <div class="secret" id="secret">
+    <div class="secret-card" id="secretCard">
+      <h3>¡Has desbloqueado el easter egg! 🎉</h3>
+      <p class="muted">Finzify te regala un 10% de descuento en la beta (solo por diversión, esto es un ejemplo).</p>
+      <p style="margin-top:12px"><button class="btn primary" id="closeSecret">Cerrar</button></p>
+    </div>
+  </div>
+
+  <script>
+    // Small interactivity: form stub + progress animation
+    document.getElementById('waitlistForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      if(!email) { alert('Pon tu correo para avisarte 🙂'); return; }
+      // This is a demo — replace with your own endpoint or Mailchimp/Forms integration
+      alert('Gracias — te avisaremos cuando lancemos: ' + email);
+      document.getElementById('email').value = '';
+    });
+
+    // progress animation
+    const prog = document.querySelector('.progress > i');
+    let width = 56;
+    setInterval(()=>{
+      width += (Math.random()*6 - 3);
+      width = Math.max(18, Math.min(98, width));
+      prog.style.width = width + '%';
+    }, 2500);
+
+    // easter egg: Konami code and rapid clicks
+    const konami = [38,38,40,40,37,39,37,39,66,65];
+    let konamiPos = 0;
+    let clickCount = 0;
+    const logo = document.getElementById('logo');
+    const secret = document.getElementById('secret');
+
+    document.addEventListener('keydown', (e)=>{
+      if(e.keyCode === konami[konamiPos]) konamiPos++; else konamiPos = (e.keyCode === konami[0]) ? 1 : 0;
+      if(konamiPos === konami.length) revealSecret();
+    });
+
+    logo.addEventListener('click', ()=>{
+      clickCount++;
+      if(clickCount >= 7) revealSecret();
+      // reset click count after a short delay
+      clearTimeout(logo._t);
+      logo._t = setTimeout(()=>{ clickCount = 0; }, 900);
+    });
+
+    function revealSecret(){
+      secret.classList.add('show');
+      spawnConfetti(24);
+    }
+
+    document.getElementById('closeSecret').addEventListener('click', ()=>{
+      secret.classList.remove('show');
+    });
+
+    // simple confetti generator (no libraries)
+    function spawnConfetti(n){
+      const colors = ['#f59e0b','#ffd166','#fb7185','#60a5fa','#34d399'];
+      for(let i=0;i<n;i++){
+        const el = document.createElement('div');
+        el.className = 'confetti-piece';
+        el.style.left = Math.random()*100 + 'vw';
+        el.style.top = (Math.random()*10 - 10) + 'vh';
+        el.style.background = colors[Math.floor(Math.random()*colors.length)];
+        el.style.opacity = Math.random()*0.9 + 0.2;
+        el.style.animationDuration = (1000 + Math.random()*1200) + 'ms';
+        el.style.transform = 'translateY(-20px) rotate(' + (Math.random()*360) + 'deg)';
+        document.body.appendChild(el);
+        // remove after animation
+        setTimeout(()=> el.remove(), 2200);
+      }
+    }
+
+    // small accessibility: keyboard reveals secret (R key)
+    document.addEventListener('keydown', (e)=>{
+      if(e.key.toLowerCase() === 'r') revealSecret();
+    });
+
+    // theme/surprise button toggles a quick flair
+    document.getElementById('themeBtn').addEventListener('click', ()=>{
+      document.body.style.background = 'linear-gradient(135deg,#051937,#021124)';
+      spawnConfetti(8);
+    });
+
+  </script>
+</body>
+</html>
